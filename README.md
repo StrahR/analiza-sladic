@@ -1,14 +1,15 @@
 Analiza sladic
 ==============
 
-Analiziral bom recepte sladic na
-[allrecipes.com](https://www.allrecipes.com/recipes/79/desserts/).
+Analiziral bom recepte sladic iz virov:
+* [allrecipes](https://www.allrecipes.com/recipes/79/desserts/).
+* [Jamie Oliver](https://www.jamieoliver.com/recipes/category/course/desserts/)
 
 Za vsak recept bom zajel:
 * Sestavine
 * Način in čas priprave
 * Količino
-* Hranilno vrednost (Vir: [ESHA Research Database](https://www.esha.com/))
+* Hranilno vrednost
 * Oceno
 * Morda še kaj
 
