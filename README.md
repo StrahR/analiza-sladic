@@ -6,14 +6,14 @@ Analiziral bom recepte sladic iz virov:
 * [Jamie Oliver](https://www.jamieoliver.com/recipes/category/course/desserts/).
 
 Za vsak recept bom zajel:
-* Sestavine
-* Način in čas priprave
-* Količino
-* Hranilno vrednost
-* Oceno
-* Morda še kaj
+* sestavine,
+* način in čas priprave,
+* količino,
+* hranilno vrednost,
+* oceno,
+* morda še kaj.
 
 Delovne hipoteze:
-* Večina sladic vsebuje čokolado
-* Sladice imajo veliko sladkorja/kalorij
-* Čas priprave je neodvisen od prisotnosti določenih sestavin
+1. Večina sladic vsebuje čokolado.
+2. Sladice imajo veliko sladkorja/kalorij.
+3. Čas priprave je neodvisen od prisotnosti določenih sestavin.
