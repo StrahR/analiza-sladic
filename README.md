@@ -1,15 +1,18 @@
-Analiza \<zadeva\>
-==================
+Analiza sladic
+==============
 
-Analiziral bom \<nekaj\>
-[\<tukaj\>](https://www.example.com/).
+Analiziral bom recepte sladic na
+[allrecipes.com](https://www.allrecipes.com/recipes/79/desserts/).
 
-Za vsak \<objekt\> bom zajel:
-* \<atribut<sub>1</sub>\>
-</br> &emsp; ⋮
-* \<atribut<sub>n</sub>\>
+Za vsak recept bom zajel:
+* Sestavine
+* Način in čas priprave
+* Količino
+* Hranilno vrednost (Vir: [ESHA Research Database](https://www.esha.com/))
+* Oceno
+* Morda še kaj
 
 Delovne hipoteze:
-* \<hipoteza<sub>1</sub>\>
-</br> &emsp; ⋮
-* \<hipoteza<sub>m</sub>\>
+* Večina sladic vsebuje čokolado
+* Sladice imajo veliko sladkorja/kalorij
+* Čas priprave je neodvisen od prisotnosti določenih sestavin
