@@ -2,8 +2,8 @@ Analiza sladic
 ==============
 
 Analiziral bom recepte sladic iz virov:
-* [allrecipes](https://www.allrecipes.com/recipes/79/desserts/).
-* [Jamie Oliver](https://www.jamieoliver.com/recipes/category/course/desserts/)
+* [allrecipes](https://www.allrecipes.com/recipes/79/desserts/),
+* [Jamie Oliver](https://www.jamieoliver.com/recipes/category/course/desserts/).
 
 Za vsak recept bom zajel:
 * Sestavine
