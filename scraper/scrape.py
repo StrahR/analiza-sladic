@@ -31,8 +31,8 @@ def recipe(recipe_url: str, recipe_filename_base: str, i: int, force=False):
         if text is not None:
             # print(f'Fetched {i}')
             tools.save(text, directory, fmt(recipe_filename_base, i))
-        else:
-            print(f'Failed {i}')
+        # else:
+            # print(f'Failed {i}')
 
 
 def recipes(recipe_url_list: List[str], recipe_filename_base: str, start=0):
