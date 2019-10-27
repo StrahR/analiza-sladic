@@ -32,3 +32,10 @@ def save(text: str, directory: str, filename: str):
     with open(path, 'w', encoding='utf-8') as file_out:
         file_out.write(text)
     return None
+
+
+def load(directory: str, filename: str):
+    '''Return the contents of the file "directory"/"filename" as a string.'''
+    path = os.path.join(directory, filename)
+    with open(path, 'r', encoding='utf-8') as file_in:
+        return file_in.read()

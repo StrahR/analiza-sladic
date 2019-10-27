@@ -4,7 +4,7 @@ from unittest.mock import mock_open, patch
 
 import requests
 
-from common.tools import page_content, save
+from common.tools import load, page_content, save
 
 
 class TestTools(unittest.TestCase):
@@ -30,11 +30,16 @@ class TestTools(unittest.TestCase):
         # test create dir
         mock_make_dirs.assert_called_with(self.directory, exist_ok=True)
         # test open file for writing
-        open_mock.assert_called_with(os.path.join(
-            self.directory, self.filename), "w", encoding='utf-8')
+        open_mock.assert_called_with(
+            os.path.join(self.directory, self.filename), 'w', encoding='utf-8')
         # test writing text to file
         open_mock.return_value.write.assert_called_once_with(self.text)
 
-
-if __name__ == '__main__':
-    unittest.main()
+    def test_load(self):
+        open_mock = mock_open(read_data=self.text)
+        with patch("common.tools.open", open_mock, create=True):
+            text = load(self.directory, self.filename)
+        # test open file for reading
+        open_mock.assert_called_with(
+            os.path.join(self.directory, self.filename), 'r', encoding='utf-8')
+        self.assertEqual(text, self.text)
