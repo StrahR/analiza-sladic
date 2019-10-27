@@ -1,4 +1,5 @@
 import sys
+import nose2
 
 from common import const
 from scraper.scraper import scrape_catalogue
@@ -6,6 +7,7 @@ from scraper.scraper import scrape_catalogue
 
 def get_commands():
     return [
+        'test',
         'scrape',
     ]
 
@@ -39,6 +41,8 @@ if __name__ == "__main__":
         print(f"Try 'python {program_name} --help' for more information")
     elif '--help' == sys.argv[1] or '-h' == sys.argv[1]:
         print(get_help(sys.argv))
+    elif "test" == sys.argv[1]:
+        nose2.discover(argv=[sys.argv[0]] + sys.argv[2:])
     elif "scrape" == sys.argv[1]:
         print("Running scrape...")
         run_scrape_catalogue()
