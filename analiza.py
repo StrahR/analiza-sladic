@@ -2,7 +2,7 @@ import sys
 import nose2
 
 from common import const
-from scraper.scraper import scrape_catalogue
+from scraper import scrape
 
 
 def get_commands():
@@ -23,11 +23,11 @@ def get_help(argv) -> str:
 
 
 def run_scrape_catalogue():
-    scrape_catalogue(
+    scrape.catalogue(
         const.allrecipes_url_base,
         const.allrecipes_filename_base
     )
-    scrape_catalogue(
+    scrape.catalogue(
         const.jamie_oliver_url_base,
         const.jamie_oliver_filename_base,
         end=24

@@ -2,8 +2,7 @@ import unittest
 from unittest.mock import Mock, patch
 
 from common import const
-from scraper.scraper import scrape_catalogue
-
+from scraper import scrape
 
 # https://stackoverflow.com/a/54838760/11285128
 
@@ -28,10 +27,10 @@ class TestScraper(unittest.TestCase):
 
     @patch('common.tools.save')
     @patch('common.tools.page_content')
-    def test_scrape_range(self, mock_page_content, mock_save):
+    def test_scrape_catalogue_range(self, mock_page_content, mock_save):
         mock_page_content.return_value = "asd"
 
-        scrape_catalogue(self.url_base, self.filename_base, start=7, end=10)
+        scrape.catalogue(self.url_base, self.filename_base, start=7, end=10)
 
         mock_page_content.assert_any_call("http://www.07.com/")
         mock_page_content.assert_any_call("http://www.08.com/")
@@ -45,10 +44,10 @@ class TestScraper(unittest.TestCase):
 
     @patch('common.tools.save')
     @patch('common.tools.page_content')
-    def test_scrape_full(self, mock_page_content, mock_save):
+    def test_scrape_catalogue_full(self, mock_page_content, mock_save):
         mock_page_content.side_effect = ["asd", "asd", "asd", None]
 
-        scrape_catalogue(self.url_base, self.filename_base)
+        scrape.catalogue(self.url_base, self.filename_base)
 
         mock_page_content.assert_any_call("http://www.01.com/")
         mock_page_content.assert_any_call("http://www.02.com/")
