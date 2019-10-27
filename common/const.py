@@ -12,5 +12,7 @@ jamie_oliver_filename_base = "jamie_oliver{:02d}.html"
 catalogue_directory = os.path.join("pages", "catalogues")
 recipe_directory = os.path.join("pages", "recipes")
 
+data_directory = "data"
+
 allrecipes_recipe_links_json = "allrecipes_links.json"
 jamie_oliver_recipe_links_json = "jamie_oliver_links.json"

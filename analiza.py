@@ -40,11 +40,9 @@ def run_scrape_catalogues():
 
 
 def run_parse_catalogues():
-    ar_recipes = set()
-        ar_recipes.update(
-        parse.catalogues(
+    ar_recipes = parse.catalogues(
             const.allrecipes_filename_base,
-            const.allrecipes_recipe_link_selector, end=764)
+        const.allrecipes_recipe_link_selector, end=764
         )
     jo_recipes = parse.catalogues(
         const.jamie_oliver_filename_base,
@@ -52,9 +50,11 @@ def run_parse_catalogues():
         prefix="https://www.jamieoliver.com"
     )
     tools.save(json.dumps(list(ar_recipes), indent=4, ensure_ascii=False),
-               const.recipe_directory, const.allrecipes_recipe_links_json)
+               const.data_directory, const.allrecipes_recipe_links_json)
     tools.save(json.dumps(list(jo_recipes), indent=4, ensure_ascii=False),
-               const.recipe_directory, const.jamie_oliver_recipe_links_json)
+               const.data_directory, const.jamie_oliver_recipe_links_json)
+
+
 
 
 if __name__ == "__main__":
