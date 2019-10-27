@@ -2,7 +2,7 @@ from common import const, tools
 from common.tools import fmt
 
 
-def catalogue(url_base, filename_base, start=1, end=None):
+def catalogue(url_base: str, filename_base: str, start=1, end=None):
     i = start-1
     while True:
         i += 1

@@ -27,7 +27,7 @@ def get_help(argv) -> str:
     )
 
 
-def run_scrape_catalogue():
+def run_scrape_catalogues():
     scrape.catalogue(
         const.allrecipes_url_base,
         const.allrecipes_filename_base
@@ -41,16 +41,13 @@ def run_scrape_catalogue():
 
 def run_parse_catalogues():
     ar_recipes = set()
-    for i in range(1, 765):
         ar_recipes.update(
-            parse.get_recipe_links(
-                tools.load(const.catalogue_directory,
-                           fmt(const.allrecipes_filename_base, i)),
-                const.allrecipes_recipe_link_selector)
+        parse.catalogues(
+            const.allrecipes_filename_base,
+            const.allrecipes_recipe_link_selector, end=764)
         )
-    jo_recipes = parse.get_recipe_links(
-        tools.load(const.catalogue_directory,
-                   fmt(const.jamie_oliver_filename_base, 1)),
+    jo_recipes = parse.catalogues(
+        const.jamie_oliver_filename_base,
         const.jamie_oliver_recipe_link_selector,
         prefix="https://www.jamieoliver.com"
     )
