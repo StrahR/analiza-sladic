@@ -1,3 +1,4 @@
+import os
 import unittest
 from unittest.mock import Mock, patch
 
@@ -59,3 +60,60 @@ class TestScraper(unittest.TestCase):
         mock_save.assert_any_call("asd", const.catalogue_directory, "03.html")
         mock_save.assert_not_called_with(
             "asd", const.catalogue_directory, "04.html")
+
+    @patch('os.path.isfile')
+    @patch('common.tools.save')
+    @patch('common.tools.page_content')
+    def test_scrape_recipe_new_url(self, mock_page_content, mock_save, mock_isfile):
+        mock_page_content.return_value = "asd"
+        mock_isfile.return_value = False
+        directory = os.path.join(const.recipe_directory, '00000-00999')
+
+        scrape.recipe(self.url_base.format(page=1), self.filename_base, 1)
+
+        mock_isfile.assert_called_with(os.path.join(directory, "01.html"))
+        mock_page_content.assert_called_with("http://www.01.com/")
+        mock_save.assert_called_with("asd", directory, "01.html")
+
+    @patch('os.path.isfile')
+    @patch('common.tools.save')
+    @patch('common.tools.page_content')
+    def test_scrape_recipe_known_url(self, mock_page_content, mock_save, mock_isfile):
+        mock_page_content.return_value = "asd"
+        mock_isfile.return_value = True
+        directory = os.path.join(const.recipe_directory, '00000-00999')
+
+        scrape.recipe(self.url_base.format(page=2), self.filename_base, 2)
+
+        mock_isfile.assert_called_with(os.path.join(directory, "02.html"))
+        mock_page_content.assert_not_called_with("http://www.02.com/")
+        mock_save.assert_not_called_with("asd", directory, "02.html")
+
+    @patch('os.path.isfile')
+    @patch('common.tools.save')
+    @patch('common.tools.page_content')
+    def test_scrape_recipe_force_known_url(self, mock_page_content, mock_save, mock_isfile):
+        mock_page_content.return_value = "asd"
+        mock_isfile.return_value = True
+        directory = os.path.join(const.recipe_directory, '00000-00999')
+
+        scrape.recipe(self.url_base.format(page=3),
+                      self.filename_base, 3, force=True)
+
+        mock_isfile.assert_not_called_with(os.path.join(directory, "03.html"))
+        mock_page_content.assert_called_with("http://www.03.com/")
+        mock_save.assert_called_with("asd", directory, "03.html")
+
+    @patch('os.path.isfile')
+    @patch('common.tools.save')
+    @patch('common.tools.page_content')
+    def test_scrape_recipe_get_fail(self, mock_page_content, mock_save, mock_isfile):
+        mock_page_content.return_value = None
+        mock_isfile.return_value = False
+        directory = os.path.join(const.recipe_directory, '00000-00999')
+
+        scrape.recipe(self.url_base.format(page=4), self.filename_base, 4)
+
+        mock_isfile.assert_called_with(os.path.join(directory, "04.html"))
+        mock_page_content.assert_called_with("http://www.04.com/")
+        mock_save.assert_not_called_with("asd", directory, "04.html")
