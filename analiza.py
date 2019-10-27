@@ -1,7 +1,11 @@
+import json
 import sys
+
 import nose2
 
-from common import const
+from common import const, tools
+from common.tools import fmt
+from parsing import parse
 from scraper import scrape
 
 
@@ -9,6 +13,7 @@ def get_commands():
     return [
         'test',
         'scrape',
+        'parse',
     ]
 
 
@@ -30,8 +35,29 @@ def run_scrape_catalogue():
     scrape.catalogue(
         const.jamie_oliver_url_base,
         const.jamie_oliver_filename_base,
-        end=24
+        end=1
     )
+
+
+def run_parse_catalogues():
+    ar_recipes = set()
+    for i in range(1, 765):
+        ar_recipes.update(
+            parse.get_recipe_links(
+                tools.load(const.catalogue_directory,
+                           fmt(const.allrecipes_filename_base, i)),
+                const.allrecipes_recipe_link_selector)
+        )
+    jo_recipes = parse.get_recipe_links(
+        tools.load(const.catalogue_directory,
+                   fmt(const.jamie_oliver_filename_base, 1)),
+        const.jamie_oliver_recipe_link_selector,
+        prefix="https://www.jamieoliver.com"
+    )
+    tools.save(json.dumps(list(ar_recipes), indent=4, ensure_ascii=False),
+               const.recipe_directory, const.allrecipes_recipe_links_json)
+    tools.save(json.dumps(list(jo_recipes), indent=4, ensure_ascii=False),
+               const.recipe_directory, const.jamie_oliver_recipe_links_json)
 
 
 if __name__ == "__main__":
@@ -41,12 +67,14 @@ if __name__ == "__main__":
         print(f"Try 'python {program_name} --help' for more information")
     elif '--help' == sys.argv[1] or '-h' == sys.argv[1]:
         print(get_help(sys.argv))
-    elif "test" == sys.argv[1]:
+    elif 'test' == sys.argv[1]:
         nose2.discover(argv=[sys.argv[0]] + sys.argv[2:])
-    elif "scrape" == sys.argv[1]:
+    elif 'scrape' == sys.argv[1]:
         print("Running scrape...")
         run_scrape_catalogue()
         print("Done!")
+    elif 'parse' == sys.argv[1]:
+        run_parse_catalogues()
     else:
         print(
             f"""{program_name}: unrecognised option '{" ".join(sys.argv[1:])}'.\n"""
