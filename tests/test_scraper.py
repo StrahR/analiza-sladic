@@ -27,7 +27,7 @@ class TestScraper(unittest.TestCase):
 
     @patch('common.tools.save')
     @patch('common.tools.page_content')
-    def test_scrape_catalogue_range(self, mock_page_content, mock_save):
+    def test_scrape_catalogues_range(self, mock_page_content, mock_save):
         mock_page_content.return_value = "asd"
 
         scrape.catalogue(self.url_base, self.filename_base, start=7, end=10)
@@ -44,7 +44,7 @@ class TestScraper(unittest.TestCase):
 
     @patch('common.tools.save')
     @patch('common.tools.page_content')
-    def test_scrape_catalogue_full(self, mock_page_content, mock_save):
+    def test_scrape_catalogues_full(self, mock_page_content, mock_save):
         mock_page_content.side_effect = ["asd", "asd", "asd", None]
 
         scrape.catalogue(self.url_base, self.filename_base)
