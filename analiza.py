@@ -19,11 +19,17 @@ def get_commands():
 
 def get_help(argv) -> str:
     return (
-        f"\nUsage\n  python {argv[0]} [options] <command>"
+        f"Usage\n  python {argv[0]} [options] <command>"
         f"\nOptions:"
-        f"\n  -h, --help\t\tPrint help and exit"
-        f"\nCommands:\n  "
-        + "\n  ".join(get_commands())
+
+        f"\n  -h, --help\t\t\tPrint help and exit"
+        f"\nCommands:"
+        f"\n  test"
+        f"\n  scrape <mode>\t\t\tSave pages locally"
+        f"\n  parse <mode>\t\t\tExtract relevant data from local pages"
+        f"\nModes:"
+        f"\n  catalogues"
+        f"\n  recipes"
     )
 
 
@@ -55,6 +61,18 @@ def run_parse_catalogues():
                const.data_directory, const.jamie_oliver_recipe_links_json)
 
 
+def run_scrape_recipes():
+    ar_recipe_urls = json.loads(tools.load(
+        const.data_directory,
+        const.allrecipes_recipe_links_json
+    ))
+    jo_recipe_urls = json.loads(tools.load(
+        const.data_directory,
+        const.jamie_oliver_recipe_links_json
+    ))
+    scrape.recipes(ar_recipe_urls, const.allrecipes_recipe_filename_base)
+    scrape.recipes(jo_recipe_urls, const.jamie_oliver_recipe_filename_base)
+
 
 
 if __name__ == "__main__":
@@ -67,11 +85,35 @@ if __name__ == "__main__":
     elif 'test' == sys.argv[1]:
         nose2.discover(argv=[sys.argv[0]] + sys.argv[2:])
     elif 'scrape' == sys.argv[1]:
-        print("Running scrape...")
-        run_scrape_catalogue()
+        if len(sys.argv) < 3:
+            print(f"{program_name}: usage error: Mode required.")
+        elif "catalogues" == sys.argv[2]:
+            print("Scraping catalogues...")
+            run_scrape_catalogues()
+            print("Done!")
+        elif "recipes" == sys.argv[2]:
+            print("Scraping recipes...")
+            run_scrape_recipes()
         print("Done!")
+        else:
+            print(
+                f"""{program_name}: unrecognised mode '{" ".join(sys.argv[2])}'.\n"""
+                f"""Try 'python {program_name} --help' for more information.""")
     elif 'parse' == sys.argv[1]:
+        if len(sys.argv) < 3:
+            print(f"{program_name}: usage error: Mode required.")
+        elif "catalogues" == sys.argv[2]:
+            print("Parsing catalogues...")
         run_parse_catalogues()
+            print("Done!")
+        elif "recipes" == sys.argv[2]:
+            print("Parsing recipes...")
+            # run_parse_recipes()
+            print("Done!")
+        else:
+            print(
+                f"""{program_name}: unrecognised mode '{" ".join(sys.argv[2])}'.\n"""
+                f"""Try 'python {program_name} --help' for more information.""")
     else:
         print(
             f"""{program_name}: unrecognised option '{" ".join(sys.argv[1:])}'.\n"""

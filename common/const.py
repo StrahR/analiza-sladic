@@ -9,6 +9,9 @@ jamie_oliver_recipe_link_selector = 'div.recipe-block > a'
 allrecipes_filename_base = "allrecipes{:03d}.html"
 jamie_oliver_filename_base = "jamie_oliver{:02d}.html"
 
+allrecipes_recipe_filename_base = "allrecipes_recipe_{:05d}.html"
+jamie_oliver_recipe_filename_base = "jamie_oliver_recipe_{:03d}.html"
+
 catalogue_directory = os.path.join("pages", "catalogues")
 recipe_directory = os.path.join("pages", "recipes")
 
