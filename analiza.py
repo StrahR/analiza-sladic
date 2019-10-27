@@ -1,7 +1,7 @@
 import sys
 
 from common import const
-from scraper.scraper import scrape
+from scraper.scraper import scrape_catalogue
 
 
 def get_commands():
@@ -20,10 +20,16 @@ def get_help(argv) -> str:
     )
 
 
-def run_scrape():
-    scrape(const.allrecipes_url_base, const.allrecipes_filename_base)
-    scrape(const.jamie_oliver_url_base,
-           const.jamie_oliver_filename_base, end=24)
+def run_scrape_catalogue():
+    scrape_catalogue(
+        const.allrecipes_url_base,
+        const.allrecipes_filename_base
+    )
+    scrape_catalogue(
+        const.jamie_oliver_url_base,
+        const.jamie_oliver_filename_base,
+        end=24
+    )
 
 
 if __name__ == "__main__":
@@ -35,7 +41,7 @@ if __name__ == "__main__":
         print(get_help(sys.argv))
     elif "scrape" == sys.argv[1]:
         print("Running scrape...")
-        run_scrape()
+        run_scrape_catalogue()
         print("Done!")
     else:
         print(
