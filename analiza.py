@@ -80,7 +80,7 @@ def run_parse_recipes():
             const.allrecipes_selectors, start=i, end=min(i+999, 13292)
         )
         tools.save(json.dumps(list(ar_recipes), indent=4, ensure_ascii=False),
-                   const.data_directory, fmt(const.allrecipes_recipe_raw_data_json, i//1000))
+                   const.data_directory, fmt(const.allrecipes_recipe_raw_data_json_base, i//1000))
         print(f'Parsed {i+1000} recipes')
 
 

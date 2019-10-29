@@ -20,7 +20,8 @@ data_directory = "data"
 allrecipes_recipe_links_json = "allrecipes_links.json"
 jamie_oliver_recipe_links_json = "jamie_oliver_links.json"
 
-allrecipes_recipe_raw_data_json = "allrecipes_raw_{:02d}.json"
+allrecipes_recipe_raw_data_json_base = "allrecipes_raw_{:02d}.json"
+allrecipes_recipe_raw_data_json = "allrecipes_raw.json"
 jamie_oliver_recipe_raw_data_json = "jamie_oliver_raw.json"
 
 
