@@ -9,14 +9,6 @@ from parsing import parse
 from scraper import scrape
 
 
-def get_commands():
-    return [
-        'test',
-        'scrape',
-        'parse',
-    ]
-
-
 def get_help(argv) -> str:
     return (
         f"Usage\n  python {argv[0]} [options] <command>"
