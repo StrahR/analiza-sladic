@@ -47,9 +47,9 @@ def run_scrape_catalogues():
 
 def run_parse_catalogues():
     ar_recipes = parse.catalogues(
-            const.allrecipes_filename_base,
+        const.allrecipes_filename_base,
         const.allrecipes_recipe_link_selector, end=764
-        )
+    )
     jo_recipes = parse.catalogues(
         const.jamie_oliver_filename_base,
         const.jamie_oliver_recipe_link_selector,
@@ -74,6 +74,23 @@ def run_scrape_recipes():
     scrape.recipes(jo_recipe_urls, const.jamie_oliver_recipe_filename_base)
 
 
+def run_parse_recipes():
+    jo_recipes = parse.recipes(
+        const.jamie_oliver_recipe_filename_base,
+        const.jamie_oliver_selectors, start=0, end=284
+    )
+    tools.save(json.dumps(list(jo_recipes), indent=4, ensure_ascii=False),
+               const.data_directory, const.jamie_oliver_recipe_raw_data_json)
+
+    for i in range(0, 13292+1, 1000):
+        ar_recipes = parse.recipes(
+            const.allrecipes_recipe_filename_base,
+            const.allrecipes_selectors, start=i, end=min(i+999, 13292)
+        )
+        tools.save(json.dumps(list(ar_recipes), indent=4, ensure_ascii=False),
+                   const.data_directory, fmt(const.allrecipes_recipe_raw_data_json, i//1000))
+        print(f'Parsed {i+1000} recipes')
+
 
 if __name__ == "__main__":
     program_name = sys.argv[0]
@@ -94,7 +111,7 @@ if __name__ == "__main__":
         elif "recipes" == sys.argv[2]:
             print("Scraping recipes...")
             run_scrape_recipes()
-        print("Done!")
+            print("Done!")
         else:
             print(
                 f"""{program_name}: unrecognised mode '{" ".join(sys.argv[2])}'.\n"""
@@ -104,11 +121,11 @@ if __name__ == "__main__":
             print(f"{program_name}: usage error: Mode required.")
         elif "catalogues" == sys.argv[2]:
             print("Parsing catalogues...")
-        run_parse_catalogues()
+            run_parse_catalogues()
             print("Done!")
         elif "recipes" == sys.argv[2]:
             print("Parsing recipes...")
-            # run_parse_recipes()
+            run_parse_recipes()
             print("Done!")
         else:
             print(
