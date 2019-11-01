@@ -34,7 +34,7 @@ def save(text: str, directory: str, filename: str):
     return None
 
 
-def load(directory: str, filename: str):
+def load(directory: str, filename: str) -> str:
     '''Return the contents of the file "directory"/"filename" as a string.'''
     path = os.path.join(directory, filename)
     with open(path, 'r', encoding='utf-8') as file_in:
