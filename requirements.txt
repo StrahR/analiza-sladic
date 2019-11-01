@@ -1,0 +1,7 @@
+autopep8==1.4.4
+beautifulsoup4==4.8.1
+dash==1.4.1
+lxml==4.4.1
+nose2==0.9.1
+pandas==0.25.2
+requests==2.22.0
