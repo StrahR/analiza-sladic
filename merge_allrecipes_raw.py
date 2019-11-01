@@ -2,7 +2,7 @@ import json
 
 from common import const, tools
 
-ll = list()
+ll: list = list()
 for i in range(14):
     ll.extend(json.loads(tools.load(
         const.data_directory,

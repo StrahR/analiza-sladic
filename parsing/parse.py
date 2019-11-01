@@ -1,5 +1,5 @@
 import os
-from typing import Callable, Dict, List, Set, Tuple
+from typing import Callable, List, Set, Tuple
 
 from bs4 import BeautifulSoup
 
@@ -13,7 +13,7 @@ def get_recipe_links(page: str, selector: str, prefix: str = '') -> Set[str]:
     return {prefix + a.get('href') for a in recipe_anchors}
 
 
-def catalogues(filename_base: str, link_selector: str, start=1, end=1, prefix: str = ''):
+def catalogues(filename_base: str, link_selector: str, start: int = 1, end: int = 1, prefix: str = '') -> Set[str]:
     links = set()
     for i in range(start, end+1):
         links.update(
@@ -33,7 +33,7 @@ def recipe(page: str, selectors: List[Tuple[str, str, Callable]]) -> dict:
     return r
 
 
-def recipes(filename_base: str, selectors: List[Tuple[str, str, Callable]], start=0, end=0) -> List[Dict[str, str]]:
+def recipes(filename_base: str, selectors: List[Tuple[str, str, Callable]], start=0, end=0) -> List[dict]:
     rs = list()
     for i in range(start, end+1):
         subfolder = 1000 * (i // 1000)
