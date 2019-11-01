@@ -15,7 +15,8 @@ def catalogue(url_base: str, filename_base: str, start=1, end=None):
         text = tools.page_content(fmt(url_base, page=i))
         if text is None:
             break
-        tools.save(text, const.catalogue_directory, fmt(filename_base, i))
+        else:
+            tools.save(text, const.catalogue_directory, fmt(filename_base, i))
 
 
 def recipe(recipe_url: str, recipe_filename_base: str, i: int, force=False):
