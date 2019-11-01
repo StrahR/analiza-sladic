@@ -4,7 +4,6 @@ import sys
 import nose2
 
 from common import const, tools
-from common.tools import fmt
 from parsing import parse
 from scraper import scrape
 
@@ -74,14 +73,15 @@ def run_parse_recipes():
     tools.save(json.dumps(list(jo_recipes), indent=4, ensure_ascii=False),
                const.data_directory, const.jamie_oliver_recipe_raw_data_json)
 
-    for i in range(0, 13292+1, 1000):
-        ar_recipes = parse.recipes(
-            const.allrecipes_recipe_filename_base,
-            const.allrecipes_selectors, start=i, end=min(i+999, 13292)
-        )
-        tools.save(json.dumps(list(ar_recipes), indent=4, ensure_ascii=False),
-                   const.data_directory, fmt(const.allrecipes_recipe_raw_data_json_base, i//1000))
-        print(f'Parsed {i+1000} recipes')
+    # for i in range(0, 13292+1, 1000):
+    ar_recipes = parse.recipes(
+        const.allrecipes_recipe_filename_base,
+        const.allrecipes_selectors, start=0, end=13292
+    )
+    tools.save(json.dumps(list(ar_recipes), indent=4, ensure_ascii=False),
+               const.data_directory, const.allrecipes_recipe_raw_data_json)
+    # const.data_directory, fmt(const.allrecipes_recipe_raw_data_json_base, i//1000))
+    # print(f'Parsed {i+1000} recipes')
 
 
 if __name__ == "__main__":

@@ -50,8 +50,9 @@ allrecipes_selectors = [
      lambda v: v[0].text if v else None),
     ('steps', 'ol.recipe-directions__list > li.step > span.recipe-directions__list--item',
      lambda v: [val.text.strip() for val in v[:-1]]),
-    ('nutrition', 'section.recipe-footnotes',
-     lambda v: {val.get('itemprop'): val.text.split()[0] for val in v}),
+    ('nutrition', 'div.nutrition-summary-facts',
+     #  lambda v: {val.get('itemprop'): val.text.split()[0] for val in v}),
+     lambda v: {val.split()[-1]: ' '.join(val.split()[:-1]) for val in ' '.join(v[0].text.split())[13:-16].split('; ')} if v else None),
 ]
 
 jamie_oliver_selectors = [
