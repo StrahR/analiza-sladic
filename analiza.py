@@ -18,6 +18,7 @@ def get_help(argv) -> str:
         f"\n  test"
         f"\n  scrape <mode>\t\t\tSave pages locally"
         f"\n  parse <mode>\t\t\tExtract relevant data from local pages"
+        f"\n  tocsv\t\t\t\tConvert json data to csv"
         f"\nModes:"
         f"\n  catalogues"
         f"\n  recipes"
@@ -84,6 +85,19 @@ def run_parse_recipes():
     # print(f'Parsed {i+1000} recipes')
 
 
+def run_tocsv():
+    ar_recipes = json.loads(tools.load(
+        const.data_directory,
+        const.allrecipes_recipe_raw_data_json
+    ))
+    jo_recipes = json.loads(tools.load(
+        const.data_directory,
+        const.jamie_oliver_recipe_raw_data_json
+    ))
+    parse.tocsv(const.allrecipes_recipe_csv_base, ar_recipes)
+    parse.tocsv(const.jamie_oliver_recipe_csv_base, jo_recipes)
+
+
 if __name__ == "__main__":
     program_name = sys.argv[0]
     if len(sys.argv) == 1:
@@ -123,6 +137,10 @@ if __name__ == "__main__":
             print(
                 f"""{program_name}: unrecognised mode '{" ".join(sys.argv[2])}'.\n"""
                 f"""Try 'python {program_name} --help' for more information.""")
+    elif 'tocsv' == sys.argv[1]:
+        print("Converting json to csv...")
+        run_tocsv()
+        print("Done!")
     else:
         print(
             f"""{program_name}: unrecognised option '{" ".join(sys.argv[1:])}'.\n"""

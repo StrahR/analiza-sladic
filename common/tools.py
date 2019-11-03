@@ -1,3 +1,4 @@
+import csv
 import os
 from typing import Optional
 
@@ -39,3 +40,17 @@ def load(directory: str, filename: str) -> str:
     path = os.path.join(directory, filename)
     with open(path, 'r', encoding='utf-8') as file_in:
         return file_in.read()
+
+
+def write_csv(fieldnames: list, rows: list, directory: str, filename: str):
+    '''Write a CSV file to directory/filename. The fieldnames must be a list of
+    strings, the rows a list of dictionaries each mapping a fieldname to a
+    cell-value.'''
+    os.makedirs(directory, exist_ok=True)
+    path = os.path.join(directory, filename)
+    with open(path, 'w', encoding='utf-8') as csv_file:
+        writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+        writer.writeheader()
+        for row in rows:
+            writer.writerow(row)
+    return None

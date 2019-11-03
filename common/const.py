@@ -24,6 +24,9 @@ allrecipes_recipe_raw_data_json_base = "allrecipes_raw_{:02d}.json"
 allrecipes_recipe_raw_data_json = "allrecipes_raw.json"
 jamie_oliver_recipe_raw_data_json = "jamie_oliver_raw.json"
 
+allrecipes_recipe_csv_base = "ar_{table}.csv"
+jamie_oliver_recipe_csv_base = "jo_{table}.csv"
+
 
 allrecipes_selectors = [
     ('name', 'h1[itemprop="name"]',
