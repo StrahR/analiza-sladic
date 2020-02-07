@@ -83,7 +83,7 @@ def extract_nested_data(recipes: List[Recipe]):
                 {'recipe': recipe['id'], 'seq': i, 'step': step.replace('\n', '')})
 
         recipe.pop('nutrition')
-        if 'tips' in recipe and recipe['tips'] is not None:
+        if 'tips' in recipe and type(recipe['tips']) == str:
             recipe['tips'] = recipe['tips'].replace('\n', '')
     return recipes, ingredients, steps, tags
 
