@@ -28,15 +28,17 @@ Vsebina CSV datotek:
 
 # Navodila za uporabnike
 
-Zajem podatkov je razdeljen na 4 faze:
-* `python analiza.py scrape catalogues`
-* `pyhton analiza.py parse catalogues`
-* `python analiza.py scrape recipes`
-* `python analiza.py parse recipes`
+Zajem podatkov je razdeljen na 5 korakov:
+1. `python analiza.py scrape catalogues`
+1. `pyhton analiza.py parse catalogues`
+1. `python analiza.py scrape recipes`
+1. `python analiza.py parse recipes`
+1. `python analiza.py tocsv`
 
-Vsak od teh korakov je daljši od ene ure (če se prav spomnim).
+Prvi in tretji korak vzameta več kot eno uro, so pa končne cvs datoteke priložene v mapi `data`.
 
-Za konec še pretvorimo JSON datoteke v CSV datoteke s `python analiza.py tocsv`.
+Opozoril bi le, da sem malce ročno spremenil te datoteke, ker mi je program `\n` pretvoril v nove vrstice.
+Se mi zdi da je to popravljeno, vendar nisem ponovno želel čakati 6+ ur za zajem.
 
 Analiza podatkov se nahaja v `analiza-sladic.ipynb`.
 
