@@ -25,3 +25,19 @@ Vsebina CSV datotek:
 4. datoteke oblike `*_tags.csv` vsebujejo vrste receptov
 5. datoteke oblike `*_ingredients.csv` vsebujejo sestavine za recepte
 6. datoteke oblike `*_steps.csv` vsebujejo korake receptov
+
+# Navodila za uporabnike
+```
+Usage
+  python analiza.py [options] <command>
+Options:
+  -h, --help                    Print help and exit
+Commands:
+  test [args]                   Run tests passing [args] to nose
+  scrape <mode>                 Save pages locally
+  parse <mode>                  Extract relevant data from local pages
+  tocsv                         Convert json data to csv
+Modes:
+  catalogues
+  recipes
+```
