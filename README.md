@@ -38,6 +38,7 @@ Vsak od teh korakov je daljši od ene ure (če se prav spomnim).
 
 Za konec še pretvorimo JSON datoteke v CSV datoteke s `python analiza.py tocsv`.
 
+Analiza podatkov se nahaja v `analiza-sladic.ipynb`.
 
 ```
 Usage
