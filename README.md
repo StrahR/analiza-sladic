@@ -27,6 +27,18 @@ Vsebina CSV datotek:
 6. datoteke oblike `*_steps.csv` vsebujejo korake receptov
 
 # Navodila za uporabnike
+
+Zajem podatkov je razdeljen na 4 faze:
+* `python analiza.py scrape catalogues`
+* `pyhton analiza.py parse catalogues`
+* `python analiza.py scrape recipes`
+* `python analiza.py parse recipes`
+
+Vsak od teh korakov je daljši od ene ure (če se prav spomnim).
+
+Za konec še pretvorimo JSON datoteke v CSV datoteke s `python analiza.py tocsv`.
+
+
 ```
 Usage
   python analiza.py [options] <command>
